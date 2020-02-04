@@ -14,15 +14,9 @@ class Countdown extends Component{
     render(){
         const {timeLeft} = this.state;
         return (
-<<<<<<< HEAD
-            <div className = "countdown">
-                <h3 id = "countdownText"> COUNTDOWN TO HACKCWRU 2020:   &nbsp;
-                                          {timeLeft}</h3>
-=======
             <div id = "countdown">
                 <div id = "countdownTitle"> COUNTDOWN TO HACKCWRU 2020: </div>
                 <div id = "countdownNumbers">&nbsp;{timeLeft}</div>
->>>>>>> upstream/master
             </div>
         )
     }
