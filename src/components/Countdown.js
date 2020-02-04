@@ -6,8 +6,7 @@ class Countdown extends Component{
         super(props);
         const {HackDate} = this.props;
         this.state = {
-            timeLeft : this.setCountdown(HackDate),
-            yeet: 420
+            timeLeft : this.setCountdown(HackDate)
         };
     }
 
@@ -15,10 +14,15 @@ class Countdown extends Component{
     render(){
         const {timeLeft} = this.state;
         return (
+<<<<<<< HEAD
             <div className = "countdown">
-                <h3 id = "countdownText"> SCOOBY DOO TO HACKCWRU 2020:   &nbsp;
-                {timeLeft}
-                {this.state.yeet}</h3>
+                <h3 id = "countdownText"> COUNTDOWN TO HACKCWRU 2020:   &nbsp;
+                                          {timeLeft}</h3>
+=======
+            <div id = "countdown">
+                <div id = "countdownTitle"> COUNTDOWN TO HACKCWRU 2020: </div>
+                <div id = "countdownNumbers">&nbsp;{timeLeft}</div>
+>>>>>>> upstream/master
             </div>
         )
     }
@@ -52,9 +56,15 @@ class Countdown extends Component{
             if(days === 0 && hours === 0 && minutes === 0 && seconds === 0)
                 result = "On Going";
             else 
-                result = days + " : " + hours + " : " + minutes + " : " + seconds;
+                result = days + " : " + this.zeroPad(hours,2) + " : " + this.zeroPad(minutes,2) + " : " + this.zeroPad(seconds,2);
         
             return result; 
+    }
+
+    zeroPad(num, size) {
+        var s = num+"";
+        while (s.length < size) s = "0" + s;
+        return s;
     }
 
    

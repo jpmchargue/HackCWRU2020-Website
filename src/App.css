@@ -1,6 +1,21 @@
+:root {
+  --background:#000D1A;
+  --darkred:#971908;
+  --red:#FF1E01;
+  --darkblue:#0B3C61;
+  --blue:#0C66AC;
+  --darkgreen: #004F15 ; 
+  --green: #21AF31;
+  --lightyellow: #FFD96A;
+  --darkyellow: #BF9005;
+  --yellow: #FFC006;
+  --darkgrey: #172124;
+  --grey: #2F434A;
+}
 
 .App {
-  text-align: center;
+  padding: 0 100px;
+  overflow-x: initial;
 }
 
 .App-logo {
@@ -9,7 +24,7 @@
   pointer-events: none;
 }
 .App-header {
-  background-color: #282c34;
+  background-color: var(--background);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -30,11 +45,22 @@
 
 @font-face {
   font-family: prstartk;
-  src: url("./Assets/font/prstartk.ttf");
+  src: url("./Assets/font/prstartk.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: games;
+  src: url("./Assets/font/Games.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: opensans;
+  src: url("./Assets/font/OpenSans-Regular.ttf") format('truetype');
 }
 
 body {
-  background-image:url("./Assets/backgrounds/Header_Section_Background.svg");
+  /*background-image:url("./Assets/backgrounds/Header_Section_Background.svg");*/
+  background-color: var(--background);
   background-repeat: repeat;
   background-size: cover;
 }
@@ -45,16 +71,60 @@ body,html {
   height: 100%;
 }
 
-  /** Count Down Line **/
-.countdown {
-  position: relative;
-  top: 100px;
+/* scrollbar classes */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-#countdownText {
+/* Track */
+::-webkit-scrollbar-track {
+  text-align: center;
+  background-color: var(--background);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: var(--darkblue);
+  border-radius: 10px;
+  transition: background-color .8s ;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--blue);
+  border-radius: 10px;
+}
+
+  /** Count Down Line **/
+#countdown {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  margin: 20px 0;
+  text-align: center;
+  color: white;
+}
+
+#countdown div{
   font-family: prstartk;
-  color: #F3DFDF;
   font-size: 15px;
+  padding: 5px;
+}
+
+
+
+/** flexbox classes **/
+.flex-grid {
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+.col2 {
+  flex: 2;
 }
 
 
@@ -62,39 +132,137 @@ body,html {
   These are the content related css files
   **/
 
+
+/* classes for all sections */
+#AboutSection, #HeaderSection, #FAQSection, #SponsorShipSection, #TracksSection{
+  margin-bottom: 70px;
+} 
+
+/* classses for the parallax stars effect */
+.parallax {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.parallax__layer--far {
+  height: 300%;
+  background-image:url("./Assets/backgrounds/transparent_star_layer.svg");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 65%;
+  transform: translateZ(-10px) scale(13);
+  z-index: -1;
+}
+
+.parallax__layer--close {
+  height: 300%;
+  background-image:url("./Assets/backgrounds/transparent_star_layer.svg");
+  background-size: 90%;
+  background-repeat: repeat;
+  background-position: center;
+  transform: translateZ(-6px) scale(7.5) rotateY(180deg);
+  z-index: -1;
+}
+
+@media(max-width:600px){
+  .parallax__layer--far {
+    background-size: 200%;
+    transform: translateZ(-10px) scale(11);
+  }
   
+  .parallax__layer--close {
+    background-size: 220%;
+  }
+}
+
+  
+/* header section css */
 .header {
   position: relative;
-  padding: 10%;
+  text-align: center;
+}
+
+#HeaderSection {
+  position: relative;
 }
 
 #CWRUTitle {
-  width: 95%;
+  width: 100%;
   height: auto;
+}
+.titleContainer {
+  width: 100%;
+  position: relative;
 }
 
 #subTitle {
-  width: 40%;
+  margin-top: 15px;
+  width: 100%;
   height: auto;
-  float: right;
+  right: 0px;
+}
 
+@media(max-width: 600px) {
+  #subTitle {
+    margin-top: 5px;
+  }
+}
+
+
+.subTitleContainer{
+  text-align: left;
+}
+
+.subTitleGrid{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+}
+
+@media(max-width:1096px){
+  .subTitleGrid div{
+    flex-basis: 100%;
+  }
+
+  #year img{
+    width: 35%;
+  }
+
+  #headerInfo{
+    text-align: center;
+  }
+}
+
+
+#year{
+  text-align: right;
+  width: 35%;
+}
+
+.subTitleAndLogoContainer{
+  position: relative;
 }
 
 /** Text In .header **/
-#CWRU { 
+.emphasisPixelText{
   font-family: prstartk;
-  color: #218632;
-  font-size: 25px;
-}
-
-#date {
-  font-family: prstartk;
-  color: #1B81AE;
-  font-size: 25px;
+  color: var(--yellow);
+  font-size: 20px;
+  padding: 15px 0;
 }
 
 #comingSoon {
-  font-family: prstartk;
+  font-family: opensans;
   color: #D5DDE2;
   font-size: 25px;
 }
@@ -102,70 +270,642 @@ body,html {
 /* Sparton Logo in Intro*/
 .myLogo {
   position: relative;
-  width: 15%;
+  width: 100%;
   height: auto;
+}
+
+.spartonLogo{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .spartonLogo img {
   position: relative;
-  padding: 20%;
-  left: 250%;
-  width: 90%;
-  height: auto;
+  padding: 20px;
+  height: 300px;
 }
 
-/* About Section */
-#aboutTitle {
-  font-family: prstartk;
-  color: chocolate;
+.headerButtonSection{
+  text-align: center;
+}
+
+button:focus {outline:0;}
+button:hover {cursor: pointer;}
+
+
+#registerBtn{
+  font-family: games;
+  letter-spacing: 4px;
+  font-size: 45px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  background: none;
+  border-color: var(--red);
+  border-width: 2px;
+  color: var(--red);
+  border-style: solid;
+  transition: border-color .08s, color .08s, text-shadow .08s, box-shadow .08s;
+}
+
+#registerBtn:hover{
+  text-shadow:0 0 10px var(--red);
+  background: none;
+  border-color: rgb(255, 193, 193);
+  box-shadow: 0 0 15px 2px var(--red), 0 0 12px 2px var(--red) inset;
+  color: rgb(255, 193, 193);
+}
+
+#oldWebsiteBtn{
+  font-family: games;
+  letter-spacing: 4px;
   font-size: 25px;
+  text-shadow: 0;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background: none;
+  border-color: grey;
+  box-shadow: 0;
+  border-width: 2px;
+  color: grey;
+  border-style: solid;
+  transition: border-color .08s, color .08s, text-shadow .08s, box-shadow .08s;
+}
+
+#oldWebsiteBtn:hover{
+  text-shadow:0 0 10px grey;
+  background: none;
+  border-color: white;
+  box-shadow: 0 0 15px 2px grey, 0 0 12px 2px grey inset;
+  color: white;
+}
+
+.registerButtonGroup, .oldWebsiteButtonGroup{
+  color: white;
+  padding: 10px;
+  font-family: games;
+  display: inline-block;
+  text-align: center;
+}
+
+.registerButtonGroup img{
+  width: 80%;
+}
+
+.oldWebsiteButtonGroup img{
+  width: 60%;
+}
+
+.registerButtonContainer, .oldWebsiteButtonContainer{
+  display: inline-block;
+}
+
+.bigClearText {
+  font-family: opensans;
+  color: #D5DDE2;
+  font-size: 30px;
+}
+
+@media(max-width: 600px) {
+  .bigClearText {
+    font-size: 20px;
+  }
+}
+
+
+
+/* Code of Conduct (CoC) box classes */
+#CoCPopUp-Container{  
+  font-size: 25px;
+  border: solid 2px var(--red);
+  color: white;
+  background-color: var(--background);
+  text-align: center;
+  padding: 20px;
+}
+
+.CocFormGroup{
+  justify-content: center;
+}
+
+.MuiFormControlLabel-root{
+  justify-content: center;
+}
+
+
+/* skew title boxes CSS */
+
+.skewTitleBox{
+  display: inline-block;
+  margin: 0 0 15px 0;
+  padding: 10px 0px 10px 150px;
+  border: 5px solid var(--red);
+  background: var(--darkred);
+  font-family: prstartk;
+  transform: skewX(-20deg) translateX(-160px);
+  color: white;
+  font-size: 25px;
+  min-width: 40vw;
+  text-align: center;
+}
+
+@media(max-width: 600px) {
+  .skewTitleBox{
+    font-size: 25px;
+    min-width: 70vw;
+  }
+}
+
+.skewTitleBox div{
+  transform: skewX(20deg);
+}
+
+
+/* About Section */
+
+
+#AboutSection .skewTitleBox{
+  border: 5px solid var(--red);
+  background: var(--darkred);
 }
 
 #aboutContent {
-  font-family: prstartk;
+  font-family: opensans;
   color: #D5DDE2;
-  font-size: 20px;
+  font-size: 35px;
   left: 500px;
+}
+
+#about {
+  padding: 50px 50px 50px 0;
+}
+
+#AboutGrid{
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  padding: 0px 15px;
+}
+
+#AboutGrid .row{
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 1200px;
+  justify-content: space-between;
+}
+
+#AboutGrid .AboutGrid-Item-Container {
+  flex-basis: 50%;
+  -ms-flex: auto;
+  flex: auto;
+  position: relative;
+  padding: 20px;
+  min-width: 300px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#AboutGrid .AboutGrid-Item {
+  margin: auto;
+  display: flex;
+}
+
+
+/* FAQ section */
+#FAQBackgroundContainer{
+  position: relative;
+  margin: 0px -50px;
+}
+
+#waterFall{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+#FAQSection .skewTitleBox{
+  border: 5px solid var(--yellow);
+  background: var(--darkyellow);
+}
+
+#FAQBoxesContainer{
+  padding: 4%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#FAQBoxesGrid{
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+}
+
+#FAQBoxesGrid .row{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+#FAQBoxesGrid .FAQItem{
+  flex-basis: 33%;
+  position: relative;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+@media(max-width: 1024px) {
+  #FAQBoxesGrid .FAQItem{
+    flex-basis: 50%;
+  }
+}
+
+@media(max-width: 600px) {
+  #FAQBoxesGrid .FAQItem{
+    flex-basis: 100%;
+  }
+}
+
+
+.FAQBox{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  box-sizing: border-box;
+  background: var(--grey);
+  /*border: 5px solid var(--yellow);
+  border-radius: 15px;*/
+  -webkit-box-shadow: -5px 5px 15px 5px rgba(0,0,0,0.5); 
+  box-shadow: -5px 5px 15px 5px rgba(0,0,0,0.5);
+}
+
+
+.FAQBoxContent{
+  padding: 15px;
+}
+
+.FAQBoxContent .FAQQuestion, .FAQBoxContent .FAQAnswer {
+  font-family: opensans;
+  color: white;
+}
+
+.FAQBoxContent .FAQQuestion {
+  color: var(--yellow);
+  font-size: 18px;
+  font-weight: 1000;
+  margin-bottom: 15px;
+  text-shadow: black;
+}
+
+.FAQBoxContent .FAQAnswer{
+  font-size: 16px;
+}
+
+/* Schedule section classes*/
+
+#ScheduleSection .skewTitleBox{
+  border: 5px solid var(--green);
+  background: var(--darkgreen);
+}
+
+#ScheduleGrid .row{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+#ScheduleGridContainer{
+  color: white;
+  display: flex;
+  padding: 25px 0;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.Schedule-DayContainer{
+  flex-basis: 30%;
+  min-width: 300px;
+  position: relative;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.Schedule-DayContainer .Schedule-Day-Title{
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  padding: 10px;
+}
+
+.Schedule-DayContainer .Schedule-Day-ItemContainer{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.Schedule-Day-ItemContainer .Schedule-Day-Item{
+ width: 100%;
+ display: flex;
+ flex-wrap: nowrap;
+ flex-direction: row;
+}
+
+.Schedule-Day-Item .Schedule-Day-Item-Time, .Schedule-Day-Item .Schedule-Day-Item-EventName{
+  padding: 10px;
+  flex-basis: 50%;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.Schedule-Day-Item .Schedule-Day-Item-Time{
+  border-right: 2px solid var(--grey);
+  text-align: right;
+}
+
+.Schedule-Day-Item .Schedule-Day-Item-EventName{
+  text-align: left;
+}
+
+@media(max-width:600px){
+  .Schedule-Day-Item .Schedule-Day-Item-Time, .Schedule-Day-Item .Schedule-Day-Item-EventName{
+    font-size: 18px;
+  }
+
+  .Schedule-DayContainer .Schedule-Day-Title{
+    font-size: 22px;
+  }
+}
+
+/* classes for the sponsorship section*/
+
+#SponsorshipSection{
+  margin-bottom: 50px;
+}
+#sponsorshipHeader{
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  padding: 25px;
+}
+
+#stickermule{
+  background-color: white;
+}
+
+#SponsorGrid{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 25px 0;
+}
+
+
+.SponsorGrid-Item{
+  display: flex;
+  flex-basis: 300px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.SponsorGrid-Item div{
+  width: 100%;
+}
+
+@media(max-width:600px){
+  .SponsorGrid-Item{
+    max-height: 100px;
+    max-width: 225px;
+}
+}
+
+#SponsorGrid div img{
+  width: 100%;
+  transition: filter .25s ease-in-out;
+  -webkit-filter: grayscale(100%) contrast(20%) brightness(50%); /* Ch 23+, Saf 6.0+, BB 10.0+ */
+  filter: grayscale(100%) contrast(20%) brightness(50%); /* FF 35+ */
+}
+
+@media(max-width:600px){
+  #SponsorGrid div img{
+    -webkit-filter: grayscale(0%); /* Ch 23+, Saf 6.0+, BB 10.0+ */
+    filter: grayscale(0%); /* FF 35+ */
+  }
+}
+
+#SponsorGrid div img:hover{
+  -webkit-filter: grayscale(0%); /* Ch 23+, Saf 6.0+, BB 10.0+ */
+  filter: grayscale(0%); /* FF 35+ */
+}
+
+
+
+/* Classes for the tracks section */
+#tracksHeader{
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  padding: 25px;
+}
+
+#tracksGrid{
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  padding: 0px 15px;
+}
+
+#tracksBoxesContainer{
+  padding: 4%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media(max-width:600px){
+  #tracksBoxesContainer{
+    padding: 4%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+#tracksBoxesGrid{
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+}
+
+#tracksBoxesGrid .row{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+#tracksBoxesGrid .tracksItem{
+  flex-basis: 25%;
+  position: relative;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+@media(max-width: 1024px) {
+  #tracksBoxesGrid .tracksItem{
+    flex-basis: 50%;
+  }
+}
+
+@media(max-width: 600px) {
+  #tracksBoxesGrid .tracksItem{
+    flex-basis: 100%;
+    max-width: 250px;
+  }
+}
+
+
+.tracksBox{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  box-sizing: border-box;
+  background: var(--darkgrey);
+  border-radius: 15px;
+  -webkit-box-shadow: -5px 5px 15px 5px rgba(0,0,0,0.5); 
+  box-shadow: -5px 5px 15px 5px rgba(0,0,0,0.5);
+}
+
+@media(max-width:600px){
+  .tracksBox{
+    height: unset;
+  }
+}
+
+
+.tracksBoxContent{
+  padding: 15px;
+}
+
+.tracksBoxContent .tracksTitle, .tracksBoxContent .tracksDescription {
+  font-family: opensans;
+  color: white;
+}
+
+.tracksBoxContent .tracksTitle {
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 1000;
+  margin-bottom: 15px;
+  text-shadow: black;
+}
+
+.tracksBoxContent .tracksDescription{
+  font-size: 20px;
+}
+
+.tracksIcon{
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+@media(max-width: 600px){
+  .tracksIcon{
+    padding: 25px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Classes for the offset highlight effect */
+.offsetHighlightRed::before, .offsetHighlightYellow::before, .offsetHighlightBlue::before, .offsetHighlightGreen::before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /*top: 5px;
+  left: -10px;*/
+  background: white;
+  z-index: -1;
+}
+
+
+
+.offsetHighlightRed::before{
+  background: var(--darkred);
+}
+
+.offsetHighlightYellow::before{
+  background: var(--yellow);
+}
+.offsetHighlightBlue::before{
+  background: var(--blue);
+}
+.offsetHighlightGreen::before{
+  background: var(--darkgreen);
+}
+
+.offsetHighlightRed, .offsetHighlightYellow, .offsetHighlightBlue, .offsetHighlightGreen{
+  display: inline-block;
+  position: relative;
 }
 
 
 /** responsive for mobile phone **/
-@media only screen and (max-width: 600px) {
-  .countdown {
-    position: relative;
-    top: 120px;
-  }
-  
-  #countdownText {
-    font-family: prstartk;
-    color: #F3DFDF;
-    font-size: 7px;
-  }
-  .header {
-      position: relative;
-      padding: 10%;
-      top: 100px;
-  }
-  #CWRU { 
-      font-family: prstartk;
-      color: #218632;
-      font-size: 15px;
-  }
-    
-  #date {
-      font-family: prstartk;
-      color: #1B81AE;
-      font-size: 15px;
-  }
-  #comingSoon {
-      font-family: prstartk;
-      color: #D5DDE2;
-      font-size: 20px;
-  }
+ @media only screen and (max-width: 600px) {
+    .countdown {
+      margin: 5px 0;
+    } 
 
-.about {
-  display: none;
-}
+    .App{
+      padding: 0 15px;
+    }
+
+    #FAQBackgroundContainer{
+      margin: 0px -15px;
+    }
+    
+    #countdown div{
+      font-size: 12px;
+    }
+    .header {
+        position: relative;
+        text-align: center;
+    }
+
+    .spartonLogo img{
+      height: 200px;
+    }
+      
+    
+    #comingSoon {
+        font-family: opensans;
+        color: #D5DDE2;
+        font-size: 20px;
+    }
+
+  .about {
+    display: none;
+  }
 }
 
   
