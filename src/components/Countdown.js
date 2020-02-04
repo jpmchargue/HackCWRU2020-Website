@@ -6,7 +6,8 @@ class Countdown extends Component{
         super(props);
         const {HackDate} = this.props;
         this.state = {
-            timeLeft : this.setCountdown(HackDate)
+            timeLeft : this.setCountdown(HackDate),
+            yeet: 420
         };
     }
 
@@ -15,8 +16,9 @@ class Countdown extends Component{
         const {timeLeft} = this.state;
         return (
             <div className = "countdown">
-                <h3 id = "countdownText"> COUNTDOWN TO HACKCWRU 2020:   &nbsp;
-                                          {timeLeft}</h3>
+                <h3 id = "countdownText"> SCOOBY DOO TO HACKCWRU 2020:   &nbsp;
+                {timeLeft}
+                {this.state.yeet}</h3>
             </div>
         )
     }
